@@ -18,12 +18,18 @@
 .signupScreen > form > input {
   outline-width: 0;
   height: 40px;
-  margin-bottom: 14px;
   border-radius: 5px;
   border: none;
   padding: 5px 15px;
 }
-
+.signupScreen > form > p {
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-style: italic;
+  color: #e50914;
+}
 .signupScreen > form > button {
   padding: 16px 20px;
   font-size: 1rem;
@@ -34,6 +40,11 @@
   border: none;
   cursor: pointer;
   margin-top: 20px;
+}
+
+.signupScreen > form > button:hover {
+  opacity: 0.8;
+  transition: all 0.5s;
 }
 
 .signupScreen > form > h4 {
@@ -49,4 +60,9 @@
 .signupScreen__link:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.signupScreen__google {
+  background-color: transparent !important;
+  border: 1px solid #fff !important;
 }

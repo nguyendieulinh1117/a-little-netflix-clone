@@ -7,16 +7,19 @@ import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
 import ProfileScreen from "./screen/ProfileScreen";
+import VerifyScreen from "./screen/VerifyScreen";
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubcribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
+        console.log(userAuth);
         dispatch(
           login({
             uid: userAuth.uid,
             email: userAuth.email,
+            verify: userAuth.emailVerified,
           })
         );
       } else {
@@ -25,11 +28,14 @@ function App() {
     });
     return unsubcribe;
   }, [dispatch]);
+
   return (
     <div className="app">
       <Router>
         {!user ? (
           <LoginScreen />
+        ) : !user.verify ? (
+          <VerifyScreen />
         ) : (
           <Switch>
             <Route exact path="/" component={HomeScreen} />

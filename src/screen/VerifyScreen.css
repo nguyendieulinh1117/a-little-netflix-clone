@@ -1,0 +1,29 @@
+.verifyScreen {
+  height: 100vh;
+}
+
+.verifyScreen__body {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 8%;
+  max-width: 800px;
+}
+
+.verifyScreen__report {
+  width: 100%;
+  background-color: #fff;
+  padding: 100px 70px;
+}
+
+.verifyScreen__report > h1 {
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 14px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.verifyScreen__report > p {
+  text-align: center;
+  padding-top: 20px;
+}
