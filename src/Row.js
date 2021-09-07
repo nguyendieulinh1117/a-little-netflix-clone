@@ -3,6 +3,7 @@ import axios from "./axios";
 import "./Row.css";
 function Row({ title, fetchUrl, isLargeRow = false }) {
   const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState(null);
   const base_url = "https://image.tmdb.org/t/p/original/";
   useEffect(() => {
     async function fetchData() {
@@ -12,6 +13,13 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
     fetchData();
   }, [fetchUrl]);
 
+  const handleMovie = (movie) => {
+    setMovie(movie);
+  };
+  const closePopup = () => {
+    setMovie(null);
+  };
+  console.log(movie);
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -22,6 +30,7 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
               ((isLargeRow && movie.poster_path) ||
                 (!isLargeRow && movie.backdrop_path)) && (
                 <img
+                  onClick={() => handleMovie(movie)}
                   key={index}
                   src={`${base_url}${
                     isLargeRow ? movie.poster_path : movie.backdrop_path
@@ -32,6 +41,21 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
               )
           )}
       </div>
+      {movie !== null && (
+        <div className="poster__detail">
+          <div className="hamburger" onClick={closePopup}>
+            <span className="line"></span>
+          </div>
+          <div className="poster__content">
+            <h3>{movie?.name || movie?.title}</h3>
+            <span>
+              {movie?.first_air_date || movie?.release_date}|{movie?.id}
+            </span>
+            <p>{movie?.overview}</p>
+            <button>Play</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
